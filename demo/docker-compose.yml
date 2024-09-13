@@ -1,0 +1,45 @@
+---
+services:
+  server:
+    build:
+      context: ../server
+      dockerfile: Dockerfile
+    environment:
+      DOMAIN: ${DOMAIN}
+      SECRET_KEY: ${SECRET_KEY}
+      AGENT_ENDPOINT: 'http://agent:8020'
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.server.rule=Host(`${DOMAIN}`)
+      - traefik.http.routers.server.entrypoints=web
+      - traefik.http.services.server.loadbalancer.server.port=8000
+
+  agent:
+    build:
+      context: https://github.com/OpSecId/aries-cloudagent-python.git#pstlouis/add-did-web-register-route
+      dockerfile: docker/Dockerfile
+    entrypoint: ["aca-py", "start"]
+    command: [
+      '--no-ledger',
+      '--no-transport',
+      '--admin', '0.0.0.0', '8020',
+      '--admin-insecure',
+      '--wallet-allow-insecure-seed',
+    ]
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.agent.rule=Host(`agent.${DOMAIN}`)
+      - traefik.http.routers.agent.entrypoints=web
+      - traefik.http.services.agent.loadbalancer.server.port=8020
+
+  traefik:
+    image: traefik:v3.1
+    command:
+      - --api.insecure=true
+      - --providers.docker=true
+      - --providers.docker.exposedbydefault=false
+      - --entryPoints.web.address=:80
+    ports:
+      - 80:80
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro

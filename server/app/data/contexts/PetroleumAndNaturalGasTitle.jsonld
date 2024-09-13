@@ -1,0 +1,58 @@
+{
+  "@context": {
+    "@protected": true,
+    "png-vocab": "https://bcgov.github.io/digital-trust-toolkit/docs/governance/pilots/bc-petroleum-and-natural-gas-title/vocabulary#",
+    "url": "https://schema.org/url",
+    "PetroleumAndNaturalGasTitle": {
+      "@id": "png-vocab:petroleumnaturalgastitle",
+      "@context": {
+        "@protected": true,
+        "area": "png-vocab:area",
+        "term": "png-vocab:term",
+        "caveats": "png-vocab:caveats",
+        "titleType": "png-vocab:titletype",
+        "titleNumber": "png-vocab:titlenumber",
+        "originType": "png-vocab:origintype",
+        "originNumber": "png-vocab:originnumber"
+      }
+    },
+    "TitleHolder": {
+      "@id": "png-vocab:titleholder",
+      "@context": {
+        "@protected": true,
+        "interest": "png-vocab:interest"
+      }
+    },
+    "Tract": {
+      "@id": "png-vocab:tract",
+      "@context": {
+        "@protected": true,
+        "zones": "png-vocab:tractlocations",
+        "notes": "png-vocab:tractnotes",
+        "rights": {
+          "@id": "png-vocab:tractrights",
+          "@context": {
+            "@protected": true,
+            "inclusion": "png-vocab:rightinclusion"
+          }
+        }
+      }
+    },
+    "Well": {
+      "@id": "png-vocab:well",
+      "@context": {
+        "@protected": true,
+        "surfaceLocation": "png-vocab:surfacelocation"
+      }
+    },
+    "DrillingPermit": "png-vocab:permit",
+    "PetroleumLease": "png-vocab:lease",
+    "NaturalGasLease": "png-vocab:lease",
+    "PetroleumAndNaturalGasLease": "png-vocab:lease",
+    "Lessee": "png-vocab:lessee",
+    "Licensee": "png-vocab:licensee",
+    "Permittee": "png-vocab:permittee",
+    "Petroleum": "png-vocab:petroleum",
+    "NaturalGas": "png-vocab:naturalgas"
+  }
+}
