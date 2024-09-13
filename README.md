@@ -1,7 +1,7 @@
 # untp-mock-app
 
 ## Contexts
-- [PetroleumAndNaturalGasTitle](https://test.digitaltrust.traceability.site/context/PetroleumAndNaturalGasTitle/v0)
+- [PetroleumAndNaturalGasTitle](https://test.digitaltrust.traceability.site/contexts/PetroleumAndNaturalGasTitle/v0)
 
 ## Issuer
 - [Director of Petroleum Lands](https://test.digitaltrust.traceability.site/petroleum-and-natural-gas-act/director-of-petroleum-lands/did.json)
