@@ -42,6 +42,7 @@ class AskarStorage:
         for credential_id in CREDENTIALS:
             credential_type = CREDENTIALS[credential_id]["type"]
             entity_id = CREDENTIALS[credential_id]["entityId"]
+            issuer = CREDENTIALS[credential_id]["issuer"]
             with open(f"app/data/credentials/{credential_id}.jsonld", "r") as f:
                 credential = json.loads(f.read())
 
@@ -52,7 +53,6 @@ class AskarStorage:
                 f"https://{settings.DOMAIN}/entities/{entity_id}/credentials/{credential_id}"
             )
             credential["issuer"] = ISSUERS[CREDENTIALS[credential_id]["issuer"]]
-            credential["credentialSubject"]["type"].append(credential_type)
             
             if CREDENTIALS[credential_id]["format"] == 'vc-di':
                 options = AgentController().issuer_proof_options(ISSUERS[issuer]["id"]+'#key-01')

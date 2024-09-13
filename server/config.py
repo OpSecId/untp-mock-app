@@ -7,7 +7,7 @@ load_dotenv(os.path.join(basedir, ".env"))
 
 
 class Settings(BaseSettings):
-    PROJECT_TITLE: str = "orgbook-publisher"
+    PROJECT_TITLE: str = "UNTP Mock App"
     PROJECT_VERSION: str = "v0"
 
     DOMAIN: str = os.environ["DOMAIN"]

@@ -1,13 +1,21 @@
 from fastapi import FastAPI, APIRouter, Response
 from fastapi.responses import JSONResponse
+from fastapi.middleware.cors import CORSMiddleware
 from app.plugins import AskarStorage
+from app.data import CREDENTIALS
 from config import settings
 
-app = FastAPI(title=settings.PROJECT_TITLE, version=settings.PROJECT_VERSION)
+app = FastAPI(title=settings.PROJECT_TITLE, version=settings.PROJECT_VERSION, openapi_url=None)
 
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 api_router = APIRouter()
-
 
 @api_router.get("/{namespace}/{identifier}/did.json")
 async def get_did_document(response: Response, namespace: str, identifier: str):
